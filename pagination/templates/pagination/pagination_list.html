@@ -1,0 +1,12 @@
+{% extends "base-home.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<p><a href="{% url 'pagination-create' %}">New</a></p>
+{% for pagination in pagination_list %}
+<h2><a href="{% url 'pagination-update' pagination.pk %}">{{ pagination.title }}</a></h2>
+{% endfor %}
+
+{% endblock content %}

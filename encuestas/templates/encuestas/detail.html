@@ -1,0 +1,51 @@
+{% extends 'encuestas/base.html' %}
+{% load static %}
+{% block content %}
+<div style="text-align:center" class="page-header container">
+    <h1>Encuestas</h1>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="text-align:center">
+                <h2 class="panel-title">{{ pregunta.texto_pregunta }}</h2>
+            </div>
+            <div class="panel-body">
+                    {% if error_message %}
+                    <div class="row">
+                        <div class="alert alert-danger col-md-4 col-md-offset-4" role="alert">
+                            <p class="text-danger"><strong>{{ error_message }}</strong></p>
+                        </div>
+
+                    </div>
+                    {% endif %}
+                <form action="{% url 'encuestas:vote' pregunta.id %}" method="post">
+                        {% csrf_token %}
+                        {% for choice in pregunta.opcion_set.all %}
+                            <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+                            <label for="choice{{ forloop.counter }}">{{ choice.texto_opcion }}</label><br />
+                        {% endfor %}
+                        <div class="checkbox">
+                                <label>
+                                  <input id="check" type="checkbox" value="">
+                                  Estoy seguro de mi respuesta
+                                </label>
+                        </div>
+                        <input class="btn btn-primary" id="vote" type="submit" value="Votar" disabled="disabled"/>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <a style="margin-top: 10px;" href="{% url 'encuestas:index' %}" role="button" class="btn btn-primary">Regresar</a>
+</div>
+<script>
+$('#check').on('change', function() {
+    if (this.checked) {
+        $('#vote').prop('disabled', false);
+    } else {
+        $('#vote').prop('disabled', true);
+    }
+});
+</script>
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends "tuisd/base.html" %}
+{% load static %}
+{% load staticfiles %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'tuisd/captcha/css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+
+
+
+<br>
+<div class="text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-4">
+      </div>
+
+      <div class="col-4">
+        <div class="card bg-light mb-3">
+          <div class="card-body">
+            <form action="" method="post">
+              {% csrf_token %}
+              <div class="form-group">
+                <label for="exampleInputEmail1">Correo electrónico</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="pedro@perez.com">
+                <small id="emailHelp" class="form-text text-muted"></small>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Contraseña</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="contraseña">
+              </div>
+
+              <div class="form-group">
+                <label for="exampleInputPassword1">Captcha</label>
+                {% include 'tuisd/captcha/captcha.html' %}
+              </div>
+              <button type="submit" class="btn btn-secondary btn-block">Enviar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% if post %}
+  <div class="container">
+    <div class="row">
+      <div class="col-4">
+      </div>
+
+      <div class="col-4">
+        <div class="card bg-light mb-3">
+          <div class="card-body">
+            <p><strong>
+              {% if success %}
+              Eres humano!
+              {% else %}
+              Eres un bot!
+              {% endif %}
+            </strong></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</div>
+
+<script type="text/javascript">
+  {% include 'tuisd/captcha/captcha.js' with public_key='demoPublicKey' %}
+</script>
+
+{% endblock %}
+
+{% block ayuda %}
+Ayuda de mostrar captcha
+{% endblock %}

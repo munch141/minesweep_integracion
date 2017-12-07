@@ -1,0 +1,28 @@
+{% extends "tuisd/base.html" %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'formBuilder/css/demo.css' %}">
+<link rel="stylesheet" href="{% static 'tuisd/captcha/css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div class="padded">
+    <h1>Constructor de formularios</h1>
+    <div id="fb-editor" class="build-wrap"></div>
+    <form id="fb-rendered-form" class="render-wrap"></form>
+    <button id="edit-form">Editar formulario</button>
+  	<h2>Código generado</h2>
+  	<pre id="markup" class="generated-code"></pre>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'formBuilder/js/vendor.js' %}"></script>
+<script src="{% static 'formBuilder/js/form-builder.min.js' %}"></script>
+<script src="{% static 'formBuilder/js/form-render.min.js' %}"></script
+>
+<script>
+    {% include 'formBuilder/customFormBuilder.js' with captchaHTML=captchaHTML %}
+    {% include 'tuisd/captcha/captcha.js' with public_key='demoPublicKey' %}
+  </script>{% endblock %}

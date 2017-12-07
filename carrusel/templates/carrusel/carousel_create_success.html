@@ -1,0 +1,45 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">×</span>
+      <span class="sr-only">Cerrar</span>
+    </button>
+    <h4 class="modal-title">Configurar Carrusel</h4>
+  </div>
+  <div class="modal-body">
+    <p class="alert alert-info">El carrusel fue configurado exitosamente!</p>
+    <input type="hidden" name="position" value="{{ position }}">
+    <div id="html-response-container" style="display: none;">{{ html }}</div>
+  </div><!-- /.modal-body -->
+</div><!-- /.modal-content -->
+
+<script>
+  // close the modal after 3 seconds
+  $( document ).ready(function() {
+    setTimeout(function() {
+      $('#modal-configuracion').modal('hide');
+    }, 2000);
+  });
+
+  $( document ).ready(function() {
+    var position = $("#modal-configuracion input[name='position']").val();
+    var html = $("#modal-configuracion #html-response-container");
+
+    if (position != null) {
+      if ($(".pattern-container[data-position='"+ position +"']").length > 1) {
+        $(".pattern-container[data-position='"+ position +"']").replaceWith(html.html());
+      }
+      else {
+        $(".builder").append(html.html());
+      }
+    }
+
+    $('#guardar').show();
+    var tem_id = $('#template_id').val().toString()
+    var link = "/revisar_template/"+ tem_id
+    $('#preview').attr('href',link)
+    $('#preview-form').attr('action',link)
+    $('#frm1_submit').show();
+    $('#preview').show();
+  });
+</script>

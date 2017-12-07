@@ -1,0 +1,38 @@
+{% extends "tuisd/base.html" %} 
+
+
+
+{% block content %}
+
+<div class="padded-container">
+
+<h2>Navbar diseñada</h2>
+
+<br>
+
+{% autoescape off %}
+{{htmlCodigo}}
+{% endautoescape %}
+<br>
+
+<p>Para agregar el NAVBARa su página web necesita cargar <b>Bootstrap 4</b> :</p>
+<pre class='list-requirements'>
+&lt;!-- Bootstrap 4 --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/
+</pre>
+
+		<div class="row">
+			<div class="col">
+			</div>
+			<div class="col-6">
+				<h3>HTML</h3>
+				<pre class='generated-code'>{{ html }}</pre>
+			</div>
+			<div class="col">
+			</div>
+		</div>
+	</section>
+
+</div>
+
+{% endblock %} {% block ayuda %} Ayuda de código generado {% endblock %}

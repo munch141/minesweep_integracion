@@ -1,0 +1,68 @@
+{% extends 'faqs/base.html' %}
+{% load static %}
+{% block content %}
+<div style="text-align:center" class="page-header container">
+    <h1>FAQs</h1>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="text-align:center">
+                <h2 class="panel-title">FAQ</h2>
+            </div>
+            <div class="panel-body">
+                    {% if error_message %}
+                    <div class="row">
+                        <div class="alert alert-danger col-md-4 col-md-offset-4" role="alert">
+                            <p class="text-danger"><strong>{{ error_message }}</strong></p>
+                        </div>
+
+                    </div>
+                    {% endif %}
+
+                    <!-- Mostrar las preguntas sin agrupar -->
+                    {% for preg in sin_cat %}
+
+                        <p><a href="#{{preg.id}}"><strong>{{forloop.counter}}.- {{ preg.pregunta }}</strong></a></p>
+                       
+                    {% endfor %}
+
+                    <!-- Mostrar las preguntas agrupadas -->
+                    {% for cat in categorias %}
+                    <h2>{{cat.nombre}}</h2>
+                        {% for preg in cat.pregunta_set.all %}
+                            <p><a href="#{{preg.id}}"><strong>{{forloop.counter}}.- {{ preg.pregunta }}</strong></a></p>
+                        {% endfor %}
+                    {% endfor %}
+                    <hr/>
+
+                    <!-- Mostrar las preguntas y respuestas sin agrupar -->
+                    {% for preg in sin_cat %}
+                        <p id="{{preg.id}}"><strong>{{forloop.counter}}.- {{ preg.pregunta }}</strong></p>
+                        <p>{{ preg.respuesta }}</p>
+                    {% endfor %}
+
+                    <!-- Mostrar las preguntas y respuestas agrupadas -->
+                    {% for cat in categorias %}
+                    <h2>{{cat.nombre}}</h2>
+                        {% for preg in cat.pregunta_set.all %}
+                        <p id="{{preg.id}}"><strong>{{forloop.counter}}.- {{ preg.pregunta }}</strong></p>
+                        <p>{{ preg.respuesta }}</p>
+                        {% endfor %}
+                    {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <a style="margin-top: 10px;" href="{% url 'faqs:index' %}" role="button" class="btn btn-primary">Regresar</a>
+</div>
+<script>
+$('#check').on('change', function() {
+    if (this.checked) {
+        $('#vote').prop('disabled', false);
+    } else {
+        $('#vote').prop('disabled', true);
+    }
+});
+</script>
+{% endblock %}

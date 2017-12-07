@@ -1,0 +1,57 @@
+{% extends "captcha_pattern/base.html" %} {% block content %}
+<div class="padded-container">
+	<section class="generated-code-documentation text-center">
+		<h2>Integración del lado del cliente</h2>
+
+		<p>Llave pública:</p>
+
+		<p id="public_key">
+			<code>{{ public_key }}</code>
+		</p>
+
+		<h2>Integración del lado del servidor</h2>
+
+		<p>Llave privada:</p>
+		<p id="private_key">
+			<code>{{ private_key }}</code>
+		</p>
+		<em>Esta llave debe utilizarla para validar el CAPTCHA utilizando nuestra API.
+    <a href="{% url 'captcha_api_documentation' %}">Ver documentación</a>
+    </em>
+	</section>
+
+	<hr>
+
+	<section class="generated-code-container">
+    <a href="{% url 'generateCaptchaCodeZip' public_key=public_key %}" class="btn btn-primary btn-zip-generated-code" role="button">
+      <i class="fa fa-fw fa-file-archive-o"></i>
+      Descargar zip
+    </a>
+		<p>Para agregar el CAPTCHA a su página web necesita cargar <b>Bootstrap 4</b> y <b>jQuery 3.x</b>:</p>
+
+<pre class='list-requirements'>
+&lt;!-- Bootstrap 4 --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css&quot;&gt;
+&lt;!-- jQuery 3.1.1 --&gt;
+&lt;script src=&quot;https://code.jquery.com/jquery-3.1.1.slim.min.js&quot;&gt;&lt;/script&gt;
+</pre>
+
+		<div class="row">
+			<div class="col-4">
+				<h3>HTML</h3>
+				<pre class='generated-code'>{{ html }}</pre>
+			</div>
+			<div class="col-4">
+				<h3>JS</h3>
+				<pre class='generated-code'>{{ js }}</pre>
+			</div>
+			<div class="col-4">
+				<h3>CSS</h3>
+				<pre class='generated-code'>{{ css }}</pre>
+			</div>
+		</div>
+	</section>
+
+</div>
+
+{% endblock %} {% block ayuda %} Ayuda de código generado {% endblock %}

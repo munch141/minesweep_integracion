@@ -1,0 +1,63 @@
+{% extends "base-home.html" %}
+
+{% load static %}
+<!-- Main navbar -->
+{% block navbar %}
+  {% if page_name == 'revisar' %}
+    <nav class="navbar navbar-default" id ='navbar'>
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="{% url 'home' %}">TUIsD</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li id="home"><a href="{% url 'home' %}">Home</a></li>
+          {% if request.user.is_authenticated %}
+          <li id="diseno"><a href="{% url 'build' %}">Diseño</a></li>
+          <li id="temp"><a href="{% url 'ver_templates' %}">Ver Templates</a></li>
+          {% endif %}
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          {% if request.user.is_authenticated %}
+            <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-in"></span> Logout </a></li>
+          {% else %}
+
+            <li id="crear_usuario"><a href="{% url 'crear_usuario' %}"><span class="glyphicon glyphicon-user"></span>Crear Usuario</a></li>
+
+            <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+          {% endif %}
+
+        </ul>
+      </div>
+    </nav>
+  {% else %}
+
+  {% endif %}
+{% endblock navbar %}
+<!-- /main navbar -->
+{% block content %}
+<div class="container">
+  {% if page_name == 'Preview' %}
+    <div class="row" style="margin-bottom: 10px;">
+      <a type="button" class="btn btn-primary btn-lg" href="{% url 'editar' tem_id%}" style="margin-top: 20px;"><< Volver</a>
+    </div>
+  {% endif %}
+  {% for pattern in patterns %}
+    {{ pattern.render }}
+  {% endfor %}
+</div>
+<script>
+$('.check').on('change', function() {
+    if (this.checked) {
+        $(this).closest('div.panel-body').find("input[class='vote']").prop('disabled', false);
+    } else {
+      alert("ENTRO")
+        $(this).closest('div.panel-body').find("input[class='vote']").prop('disabled', true);
+    }
+});
+
+</script>
+
+{% endblock content %}
+
+{% block custom_script %}
+{% endblock custom_script %}

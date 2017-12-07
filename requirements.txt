@@ -1,0 +1,14 @@
+captcha==0.2.4
+certifi==2017.11.5
+chardet==3.0.4
+Django==1.10
+django-bootstrap3==9.1.0
+django-widget-tweaks==1.4.1
+olefile==0.44
+Pillow==4.3.0
+psycopg2==2.7.3.2
+idna==2.6
+jsonfield==2.0.2
+markdown2==2.3.5
+requests==2.18.4
+urllib3==1.22

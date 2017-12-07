@@ -1,0 +1,38 @@
+{% load static bootstrap3 %}
+
+<!-- Accordion content modal -->
+<div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Crear Acordeon</h4>
+        </div>
+        <div class="modal-body">
+            {% if success %}
+                <p>El acordeon se ha creado con exito.</p>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    Cerrar.
+                </button>
+            {% else %}
+                <form id="accordion-create-form" data-parsley-validate="" class="post-form" novalidate>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            {% bootstrap_field accordionForm.title %}
+                            {% bootstrap_field accordionForm.title_style %}
+                            {% bootstrap_field accordionForm.content %}
+                            {% bootstrap_field accordionForm.content_style %}
+                        </div>
+                        <div class="col-lg-6">
+                            {% bootstrap_field  accordionForm.width %}
+                            {% bootstrap_field accordionForm.height %}
+                            {% bootstrap_field accordionForm.panels %}
+                            {% bootstrap_field accordionForm.style %}
+                        </div>
+                    </div>
+                    <button id type="submit" class="save btn btn-default accept-modal" id="accordion-create-submit">Crear</button>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<!-- End accordion content modal -->

@@ -1,0 +1,45 @@
+{% load static %}
+
+ <div class="nav-side-menu">
+
+    <div class="brand">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <a href="{% url 'home' %}">
+                    <img class="img-responsive" src="{% static 'img/TUIsD.png' %}"/>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+        </div>
+        <div class="row">
+            NAVEGACIÓN PRINCIPAL
+        </div>
+    </div>
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+    <div class="menu-list">
+        <ul id="menu-content" class="menu-content collapse out">
+            <li data-toggle="collapse" data-target="#builder-form-btn" class="collapsed">
+                <a><i class="fa fa-dashboard fa-lg"></i> Patrones <span class="arrow"></span></a>
+            </li>
+            <ul class="sub-menu collapse" id="builder-form-btn">
+                <li class="pattern pattern-accordion" data-pattern-name='accordion'><a href="#">Accordeon</a></li>
+                <li class="pattern pattern-formulario" data-pattern-name='formulario'><a href="#">Formulario</a></li>
+                <li class="pattern pattern-captcha config" data-pattern-name='captcha'><a href="#">Captcha</a></li>
+                <li class="pattern pattern-navbar" data-pattern-name='navbar'><a href="#">NavBar</a></li>
+                <li class="pattern pattern-carousel" data-pattern-name='carousel'><a href="#">Carousel</a></li>
+                <li class="pattern pattern-encuesta" data-pattern-name='encuesta'><a href="#">Encuesta</a></li>
+                <li class="pattern pattern-pagination" data-pattern-name='pagination'><a href="#">Paginacion</a></li>
+                <li class="pattern pattern-faq" data-pattern-name='faq'><a href="#">FAQ</a></li>
+                <li class="pattern pattern-minesweep" data-pattern-name='minesweep'><a href="#">Minesweep</a></li>
+            </ul>
+            <li data-toggle="collapse" data-target="#service" class="collapsed">
+                <a href="#"><i class="fa fa-globe fa-lg"></i> Mis Templates <span class="arrow"></span></a>
+            </li>
+            <ul class="sub-menu collapse" id="service">
+                <li>Template 1</li>
+                <li>Template 2</li>
+            </ul>
+        </ul>
+    </div>
+</div>

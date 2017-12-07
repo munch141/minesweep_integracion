@@ -1,0 +1,38 @@
+{% autoescape off %}
+<nav class="navbar navbar-toggleable-md navbar-light" style="background-color:#E6E6E6;">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  {% for list in lista %}
+	  {% if list.type == 'brand' %}
+	  	<a class="navbar-brand" href="{{list.link}}">{{list.name}}</a>
+	  {% endif %}
+  {% endfor %}
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+	     {% for list in lista %}
+    		{% if list.type == 'link' %}
+	     	<li class="nav-item">
+	     	  {% if list.option == 'disabled' %}
+	     	  	<a class="nav-{{list.type}} {{list.option}}" href="{{list.link}}">{{list.name}}<span class="sr-only">(current)</span></a>
+	     	  {% elif list.option == 'active' %}
+	     	  	<a class="nav-{{list.type}}" href="{{list.link}}">{{list.name}}<span class="sr-only">(current)</span></a>
+	     	  {% endif %}
+	     	</li>
+	        {% elif list.type == 'dropdown' %}
+	     		<li class="nav-item dropdown">
+	     		  <a class="nav-link dropdown-toggle" id="{{list.name}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	     		    {{list.name}}
+	     		  </a>
+	     		  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+	     		  {% for elem in list.elements %}
+	     		    <a class="dropdown-item" href="{{elem.link}}">{{elem.name}}</a>
+	     		  {% endfor %}
+	     		  </div>
+	     		</li>
+		    {% endif %}
+	     {% endfor %}
+    </ul>
+  </div>
+</nav>
+{% endautoescape %}

@@ -1,0 +1,312 @@
+{% extends "tuisd/base.html" %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'navbar/css/navbar.css' %}">
+<title>Font Awesome Icons</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+{% endblock %}
+
+{% block content %}
+
+<div class="padded">
+	<h1>Constructor de barra de navegación horizontal</h1>
+</div>
+
+<div class="padded-container">
+
+<nav class="navbar navbar-expand navbar-light" style="background-color:#E6E6E6;">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div id="dynamicBrans">
+  </div>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto" id="dynamicLinks"> 
+    </ul>
+  </div>
+</nav>
+
+
+<br>
+
+	  <div class="card-body">
+	    
+	    <div class="row">
+	    	<div class="col-lg-3">
+	    	</div>
+	    	<div class="col-lg-3">
+	    		<label for="navbarType"> <i class="fa fa-minus" style="font-size:24px"></i> Tipo de barra de navegación:</label>
+	    		<br>
+	    		<br>
+	    		<label for="elementList"><span class="glyphicon glyphicon-plus"></span> Agregar elemento:</label>
+	    	</div>
+	    	<div class="col-lg-3">
+	    		<div class="styled-select blue semi-square">
+	    		<select name="navbarType" id="navbarType">
+	    			<option value="fixed">Fixed</option>
+	    			<option value="static">Static</option>
+	    		</select>
+	    		</div>
+	    		<br>
+	    		<div class="styled-select blue semi-square">
+	    		<select name="elementList" id="elementList" onchange="showAddSection()">
+	    			<option value="Navbar Brand">Navbar Brand</option>
+	    			<option value="Link">Link <span class="glyphicon glyphicon-link"></span></p></option>
+	    			<option value="Dropdown">Dropdown <i class="fa fa-list-alt"></i></option>
+	    		</select>
+	    		</div>
+	    	</div>
+	    </div>
+	    <div class="row">
+	    	<div class="col-lg-3">
+	    	</div>
+	    <div class="col-lg-6" id="addLinkSection" style="display: none">
+	    		<center><h2>Añadir un elemento <span class="glyphicon glyphicon-link"></span></h2></center>
+	    		<br>
+	    		<label for="linkName">Nombre del botón:</label>
+	    		<input type="text" name="linkName" id="linkName"/>
+	    		<br>
+	    		<br>
+	    		<label for="linkLink">Link del botón:</label>
+	    		<input type="text" name="linkLink" id="linkLink"/><br>
+	    		<br>
+	    		<label for="linkOption">Estado del botón:</label>
+	    		<div class="styled-select blue semi-square">
+	    		<select name="linkOption" id="linkOption">
+	    			<option value="active">Habilitado</option>
+	    			<option value="disabled">Deshabilitado</option>
+	    		</select>
+	    	</div>
+	    		<br>
+	    		<br>
+	    	<center><button class="button1" onclick="addElement('link')">Añadir link</button></center>
+	    	</div>
+	    </div>
+
+	    <div class="row" id="addBrandSection">
+	    	<div class="col-lg-3">
+	    	</div>
+	    <div class="col-lg-6">
+	    		<center><h2>Añadir un brand <span class="glyphicon glyphicon-tag" style="font-size:22px"></span> </h2></center>
+	    		<br>
+	    		<label for="navbarBrandName">Nombre de la página:</label>
+	    		<input type="text" name="navbarBrandName" id="navbarBrandName"/>
+	    		<br>
+	    		<br>
+	    		<label for="navbarBrandLogo">Link del logo:</label>
+	    		<input type="text" name="navbarBrandLogo" id="navbarBrandLogo"/>
+	    		<br>
+	    		<br>
+	    	<center><button class="button1" onclick="addElement('brand')">Añadir brand</button></center>
+	    </div>
+	</div>
+
+	    <div class="row" id="addDropdownSection" style="display: none">
+	    	<div class="col-lg-3">
+	    	</div>
+	    <div class="col-lg-6">
+	    		<center><h2>Añadir un Dropdown <i class="fa fa-list-alt" style="font-size:24px"></i></h2></center>
+	    		<br>
+	    		<label for="dropdownName">Nombre del menú desplegable:</label>
+	    		<input type="text" name="dropdownName" id="dropdownName"/>
+	    		<br>
+	    		<br>
+	    	<div id="dynamicInput">
+	    			<label for="dropdownItem1">Item:</label>
+	    			<input type="text" name="dropdownItem1" id="dropdownItem1"/>
+	    			<br>
+	    			<br>
+	    			<label for="dropdownItem1Link">Link:</label>
+	    			<input type="text" name="dropdownItem1Link" id="dropdownItem1Link"/>
+	    			<br>
+	    			<br>
+	    		</div>
+	    	<center><button class="button1" onclick="addElement('dropdown')">Añadir dropdown</button>
+	    	<br><br>
+	    	<input class="button1"type="button" value="Agregar otro elemento" onClick="addInput('dynamicInput');"></center>
+	    </div>
+
+
+	  </div>
+
+
+	<form id = "generarCodigo" action="showCodigo/" method="POST" >
+	        {% csrf_token %}
+	        <input type="hidden" id="location" name="location" value="" />
+	        <br><br>
+	        <center><button class="button2" type="submit"/><i class="fa fa-code" style="font-size:32px;color: white"></i> Generar Código </center>
+
+	</form>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+	var elements = [];
+	var counter = 1;
+	var limit = 8
+
+	function showAddSection() {
+		// Obtiene el valor de la opción seleccionada
+		var selectedOption = document.getElementById("elementList").value;
+
+		// Muestra la sección correspondiente para crear el elemento a añadir y oculta 
+		// las demás secciones que no corresponden con la opción actual
+		switch(selectedOption) {
+			case "Link":
+				document.getElementById("addLinkSection").style.display = "block";
+				document.getElementById("addBrandSection").style.display = "none";
+				document.getElementById("addDropdownSection").style.display = "none";
+				break;
+
+			case "Navbar Brand":
+				document.getElementById("addBrandSection").style.display = "block";
+				document.getElementById("addLinkSection").style.display = "none";
+				document.getElementById("addDropdownSection").style.display = "none";
+				break;
+
+			default:
+				document.getElementById("addDropdownSection").style.display = "block";
+				document.getElementById("addBrandSection").style.display = "none";
+				document.getElementById("addLinkSection").style.display = "none";
+				break;
+
+
+		};
+	}
+
+	function addInput(divName){
+
+	     if (counter == limit)  {
+	          alert("You have reached the limit of adding " + counter + " inputs");
+	     }
+	     else {
+	          var newdiv = document.createElement('div');
+	          var newItem = " <br><div class=\"col-lg-12\">\
+				<label for=\"dropdownItem" +(counter + 1)+"\">Item:</label>\
+	          	<input type=\"text\" name=\"dropdownItem"+(counter + 1)+"\" id=\"dropdownItem"+(counter + 1)+"\"/>\
+	          </div>\
+	          <div class=\"col-lg-12\">\
+	          	<label for=\"dropdownItem"+(counter + 1)+"Link\">Link:</label>\
+	          	<input type=\"text\" name=\"dropdownItem"+(counter + 1)+"Link\" id=\"dropdownItem"+(counter + 1)+"Link\"/>\
+	          </div>";
+	          newdiv.innerHTML = newItem;
+	          document.getElementById(divName).appendChild(newdiv);
+	          counter++;
+	     }
+	}
+
+	function showAddSection() {
+		// Obtiene el valor de la opción seleccionada
+		var selectedOption = document.getElementById("elementList").value;
+
+		// Muestra la sección correspondiente para crear el elemento a añadir y oculta 
+		// las demás secciones que no corresponden con la opción actual
+		switch(selectedOption) {
+			case "Link":
+				document.getElementById("addLinkSection").style.display = "block";
+				document.getElementById("addBrandSection").style.display = "none";
+				document.getElementById("addDropdownSection").style.display = "none";
+				break;
+
+			case "Navbar Brand":
+				document.getElementById("addBrandSection").style.display = "block";
+				document.getElementById("addLinkSection").style.display = "none";
+				document.getElementById("addDropdownSection").style.display = "none";
+				break;
+
+			default:
+				document.getElementById("addDropdownSection").style.display = "block";
+				document.getElementById("addBrandSection").style.display = "none";
+				document.getElementById("addLinkSection").style.display = "none";
+				break;
+
+
+		};
+	}
+
+	function addElement(element) {
+		switch(element) {
+			case "dropdown":
+
+				var elementsList = []
+				var dropdownName      = document.getElementById("dropdownName").value;
+
+				for (i = 1; i <= counter; i++) {
+					var dropdownItem     = document.getElementById("dropdownItem"+i).value;
+					var dropdownItemLink = document.getElementById("dropdownItem"+i+"Link").value;
+
+					var object = {name: dropdownItem,link: dropdownItemLink}
+					elementsList.push(object)
+				}
+			
+				var object = {type: "dropdown", name: dropdownName, elements:elementsList}
+				elements.push(object);
+
+				// Se genera codigo html para el dropdown.
+				var newdiv = document.createElement('li');
+	          	var newItem = " <li class=\"nav-item dropdown\">\
+	     		  			  <a class=\"nav-link dropdown-toggle\" id=\"#\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">"+dropdownName+"</a>";
+	          	newdiv.innerHTML = newItem;
+	          	document.getElementById("dynamicLinks").appendChild(newdiv);
+				break
+
+			case "link":
+				var linkName = document.getElementById("linkName").value;
+				var linkLink = document.getElementById("linkLink").value;
+				var linkOption = document.getElementById("linkOption").value;
+				var object = {type: "link", name: linkName, link: linkLink, option: linkOption}
+				elements.push(object);
+				
+				// Se genera codigo html para los links.
+				var newdiv = document.createElement('li');
+
+	     		if (linkOption == "disabled"){
+	     			var newItem = "<li class=\"nav-item\"> <a class=\"nav-link disabled\" href=\"#\">"+linkName+"<span class=\"sr-only\">(current)</span></a> </li>";
+	     		}
+	     		else {
+	     			var newItem = "<li class=\"nav-item\"><a class=\"nav-link\" href=\"#\">"+linkName+"<span class=\"sr-only\">(current)</span></a>";
+	     		}
+	          	newdiv.innerHTML = newItem;
+	          	document.getElementById("dynamicLinks").appendChild(newdiv);
+				break
+
+
+			default:
+				var brandName = document.getElementById("navbarBrandName").value;
+				var brandImage = document.getElementById("navbarBrandLogo").value;
+				var object = {type: "brand", name: brandName, link: brandImage}
+				elements.push(object);
+
+				// Se genera codigo html para el Brand.
+				var newdiv = document.createElement('a');
+	          	var newItem = "<a class=\"navbar-brand\" href=\"#\">"+brandName+"</a>";
+	          	newdiv.innerHTML = newItem;
+	          	document.getElementById("dynamicBrans").appendChild(newdiv);
+				break
+		};
+
+		document.getElementById("addLinkSection").style.display = "none";
+		document.getElementById("addBrandSection").style.display = "none";
+		document.getElementById("addDropdownSection").style.display = "none";
+		console.log(elements);
+	};
+
+	$(document).on('click', '#generarCodigo', function() {
+		document.getElementById('location').value = JSON.stringify(elements);
+	});
+
+</script>
+
+
+
+{% endblock %}

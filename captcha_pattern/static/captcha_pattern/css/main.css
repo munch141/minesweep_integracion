@@ -1,0 +1,30 @@
+.generated-code, .list-requirements {
+  text-align: left;
+  padding: 1em;
+  background: #F9F9F9;
+}
+
+.generated-code {
+  height: 20em;
+}
+
+.btn-generar-codigo {
+  color: #FFF;
+  font-weight: bold;
+  height: 56px; /* sticky footer height */
+  line-height: 56px;
+  padding-top: 0;
+  border-radius: 0;
+}
+
+.generated-code-container {
+  margin: 3em 0;
+}
+
+.padded-container {
+  padding: 1em;
+}
+
+.btn-zip-generated-code {
+  margin-bottom: 1em;
+}

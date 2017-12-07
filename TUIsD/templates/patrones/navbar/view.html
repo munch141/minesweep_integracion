@@ -1,0 +1,45 @@
+{% autoescape off %}
+<nav class="navbar navbar-default" style="background-color:#E6E6E6;">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#navbarContent" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+      </button>
+      {% for list in lista %}
+    	  {% if list.type == 'brand' %}
+    	  	<a class="navbar-brand" href="{{list.link}}">{{list.name}}</a>
+    	  {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class="nav navbar-nav">
+  	     {% for list in lista %}
+      		{% if list.type == 'link' %}
+    	     	<li>
+    	     	  {% if list.option == 'disabled' %}
+    	     	  	<a class="nav-{{list.type}} {{list.option}}" href="{{list.link}}">{{list.name}}<span class="sr-only">(current)</span></a>
+    	     	  {% elif list.option == 'active' %}
+    	     	  	<a class="nav-{{list.type}}" href="{{list.link}}">{{list.name}}<span class="sr-only">(current)</span></a>
+    	     	  {% endif %}
+    	     	</li>
+  	      {% elif list.type == 'dropdown' %}
+  	     		<li class="dropdown">
+  	     		  <a class="dropdown-toggle" id="{{list.name}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  	     		    {{list.name}}
+  	     		  </a>
+  	     		  <ul class="dropdown-menu">
+    	     		  {% for elem in list.elements %}
+    	     		    <li>
+                    <a href="{{elem.link}}">{{elem.name}}</a>
+                  </li>
+    	     		  {% endfor %}
+              </ul>
+  	     		</li>
+  		    {% endif %}
+  	     {% endfor %}
+      </ul>
+    </div>
+  </div>
+</nav>
+{% endautoescape %}

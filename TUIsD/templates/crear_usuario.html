@@ -1,0 +1,34 @@
+{% extends "base-home.html" %}
+
+{% load static %}
+{% block content %}
+
+  <div class = "col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
+  <div class = "col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="container-fluid" style="background: #e7e7e7;padding-bottom: 10px;">
+      <h3 style="text-align: center;"> Creación de Usuario </h3>
+      <form action="" method="post">
+          {% csrf_token %}
+          {% for field in form%}
+            <div class="form-group">
+              {{field}}
+              {{field.errors}}
+            </div>
+          {% endfor %}
+
+        <button type="submit" class="btn btn-primary" style="float: right;">Crear</button>
+      </form>
+    </div>
+  </div>
+<div class = "col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
+
+
+{% endblock content %}
+{% block custom_script %}
+    <script>
+    $(document).ready(function() {
+      $('#crear_usuario').attr('class','active')
+    });
+  </script>
+
+{% endblock custom_script %}

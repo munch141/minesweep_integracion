@@ -1,0 +1,32 @@
+    <hr>
+<label>Preview: </label>
+<div class="row">
+    <div class="col-lg-11">
+        <!-- Print parent panel -->
+        <style type="text/css">
+            #minesweep-{{minesweep.get_uuid_as_str}} {
+                {{ minesweep.content_style }};
+            }
+        </style>            
+        <div class="panel-group">
+            <div class="panel panel-default tooltipster-{{minesweep.tooltip_side}}" data-tooltip-content="#tooltip_content">
+                    <div class="panel-heading" role="tab" id="minesweep-{{minesweep.get_uuid_as_str}}">
+                            <p> {{ minesweep.content | safe | default:"Paragraph" }} </p>
+                    </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<style type="text/css">
+    #tooltip_content {
+        width: {{minesweep.width}}%;
+        height: {{ minesweep.height }}px;
+        {{ minesweep.tooltip_style }};
+    }
+</style>
+<div class="tooltip_templates">
+    <span id="tooltip_content">
+        <p>{{ minesweep.tooltip | safe |default:"This is a minesweep"}}</p>
+    </span>
+</div>

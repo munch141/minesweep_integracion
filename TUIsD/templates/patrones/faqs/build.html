@@ -1,0 +1,28 @@
+{% extends 'builder/card.html' %}
+{% block card_content %}
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <!-- Mostrar las preguntas y respuestas sin agrupar -->
+            <div class="form-group">
+                <label for="categoria">Categoria</label>
+                <input type="text" name="categoria" parsley-trigger="change" required
+                       placeholder="Escriba la pregunta" class="form-control"
+                       value="{{pattern.categoria.nombre}}" readonly>
+            </div>
+            {% for pregunta in pattern.preguntas %}
+                <div class="form-group">
+                  <label for="pregunta">Pregunta:</label>
+                  <input type="text" name="pregunta" parsley-trigger="change" required
+                         placeholder="Escriba la pregunta " class="form-control"
+                         value="{{pregunta.pregunta}}" readonly>
+                </div>
+                <div class="form-group">
+                  <label for="respuesta">Respuesta:</label>
+                  <textarea type="text" name="respuesta" parsley-trigger="change" required placeholder="Escriba la respuesta " class="form-control" readonly>{{pregunta.respuesta}}</textarea> 
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

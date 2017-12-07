@@ -1,0 +1,77 @@
+{% extends 'faqs/base.html' %}
+{% load static %}
+{% block content %}
+<div style="text-align:center" class="page-header container">
+    <h1>FAQs</h1>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="text-align:center">
+                <h2 class="panel-title">Crear FAQ Nuevo</h2>
+            </div>
+            <div class="panel-body">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form_p.management_form }}
+
+                    <div class="checkbox">
+                        <label>
+                          <input id="tema_check" type="checkbox" value="">
+                        ¿Usar título?
+                        </label>
+                </div>
+                    <div id="form_tema" hidden>
+                    {{ form_f.as_p }}
+                    </div>
+                    <div id="form_set">
+                        {% for form in form_p %}
+                        {{ form.as_p }}
+                        {% endfor %}
+                    </div>
+                    
+                    <a style="margin-top: 10px;" class="btn btn-primary btn-sm" id="add_more">Añadir pregunta/respuesta adicional</a>
+                    <div class="checkbox">
+                            <label>
+                              <input id="check" type="checkbox" value="">
+                              Estoy seguro de mis preguntas/respuestas
+                            </label>
+                    </div>
+                    <button id="create" class="btn btn-primary btn-lg" type="submit" disabled=disabled>Crear FAQ</button>
+                </form>
+
+                <a style="margin-top: 10px;" href="{% url 'faqs:index'%}" role="button" class="btn btn-primary">Regresar</a>
+            </div>
+            <div id="empty_form" hidden>
+                {{ form_p.empty_form.as_p }}
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('#add_more').click(function() {
+        var form_idx = $('#id_form-TOTAL_FORMS').val();
+        $('#form_set').append($('#empty_form').html().replace(/__prefix__/g, form_idx));
+        $('#id_form-TOTAL_FORMS').val(parseInt(form_idx) + 1);
+    });
+
+    $('#check').on('change', function() {
+        if (this.checked) {
+            $('#create').prop('disabled', false);
+        } else {
+            $('#create').prop('disabled', true);
+        }
+    });
+
+    $('#tema_check').on('change', function() {
+        if (this.checked) {
+            $('#form_tema').prop('hidden', false);
+        } else {
+            $('#form_tema').prop('hidden', true);
+        }
+
+        $("#id_nombre").val("");
+    });
+</script>
+{% endblock %}

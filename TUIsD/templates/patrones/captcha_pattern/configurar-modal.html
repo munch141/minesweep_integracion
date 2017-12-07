@@ -1,0 +1,29 @@
+<div class="modal-dialog">
+  <!-- Modal content-->
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h4 class="modal-title">Llaves necesarias para el captcha.</h4>
+    </div>
+    <div class="modal-body">
+
+      <form class="forms" action="#" data-parsley-validate novalidate>
+        <input id="card-id" type="hidden" name="card-id">
+        <input id="position" type="hidden" name="position">
+        <div class="form-group">
+          <label for="public_key">Llave Pública</label>
+          <input type="text" name="public_key" parsley-trigger="change" required readonly
+                 placeholder="Espere mientras generamos su llave pública." value="{{pattern.public_key}}" class="form-control" id="public_key">
+          <label for="private_key">Llave Privada</label>
+          <input type="text" name="private_key" parsley-trigger="change" required readonly
+                 placeholder="Espere mientras generamos su llave privada." value="{{pattern.private_key}}" class="form-control" id="private_key">
+        </div>
+      </form>
+      <h4>Anote ambas claves y recuerde mantener su llave privada en un lugar secreto!</h4>
+    </div>
+    <div class="modal-footer">
+      <button id="accept_keys" type="button" class="accept-modal btn btn-default" data-dismiss="modal">Aceptar</button>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+{% extends 'encuestas/base.html' %}
+{% load static %}
+{% block content %}
+<div style="text-align:center" class="page-header container">
+    <h1>Encuestas</h1>
+</div>
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="text-align:center">
+                        <h1 class="panel-title">Encuestas Recientes</h1>
+                </div>
+                <div class="panel-body">
+                    {% if latest_question_list %}
+                        <ul>
+                        {% for question in latest_question_list %}
+                            <li><a href="{% url 'encuestas:detail' question.id %}">{{ question.texto_pregunta }}</a></li>
+                        {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>No hay ninguna encuesta creada.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="text-align:center">
+                        <h1 class="panel-title">Encuestas</h1>
+                    </div>
+                    <div class="panel-body">
+                        <a class="btn btn-primary btn-lg" role="button" aria-disabled="true" href="{% url 'encuestas:new' %}">Crear Encuesta</a>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

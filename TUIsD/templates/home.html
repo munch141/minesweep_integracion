@@ -1,0 +1,55 @@
+{% extends "base-home.html" %}
+
+{% load static %}
+{% block content %}
+
+<div class = "container-fluid topcontent">
+  <div class = "col-lg-4"></div>
+  <div class = "col-lg-4">
+    <img class="img-responsive" src="{% static 'img/TUIsD.png' %}"/>
+  </div>
+  <div class = "col-lg-4"></div>
+</div>
+<!-- Contenido secundario -->
+<div class="container sec-content">
+  <div class="row">
+    <div class="col-sm">
+      <h2 align="center">TUIsD es tu manejador de contenido I D E A L</h2><br>
+      <p align="center">Generar un sitio web atractivo y de un nivel alto nunca fue tan sencillo. TUIsD te ofrece herramientas diversas para que puedas llevar a cabo esa idea innovadora la cual no te deja dormir. Tus ideas, tu mundo, ¡TUIsD te acompañará en el camino!</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <h3>IDEAMOS</h3>
+      <i class="fa fa-check-circle-o" style="font-size:48px;"></i>
+      <p>Un sistema sencillo para utilizar herramientas de alto nivel fácilmente.</p>
+      <p>¡Ya no necesitas ser un experto de los códigos para generar un sitio bonito!</p>
+    </div>
+    <div class="col-sm-4">
+      <h3>MATERIALIZAMOS</h3>
+      <i class="fa fa-legal" style="font-size:48px"></i>
+      <p>Nuestra premisa es materializar tus ideas, trabajar junto a ti.</p>
+      <p>¡Con nuestra herramienta, tus metas están al alcance de la mano!</p>
+    </div>
+    <div class="col-sm-4">
+    <a class="test_it_now" href="{% url 'encuestas:index' %}">
+      <h3>PRUÉBALO YA!</h3> 
+      
+    </a>
+      <i class="fa fa-plug  " style="font-size:48px;,margin-top:20px;"></i>       
+    
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock content %}
+
+{% block custom_script %}
+  <script>
+    $(document).ready(function() {
+      $('#home').attr('class','active')
+    });
+  </script>
+{% endblock custom_script %}

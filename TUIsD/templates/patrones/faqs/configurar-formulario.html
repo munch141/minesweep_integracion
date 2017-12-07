@@ -1,0 +1,42 @@
+<div class="modal-dialog">
+  <!-- Modal content-->
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h4 class="modal-title">Configuracion del formulario</h4>
+    </div>
+    <div class="modal-body">
+
+      <form class="forms" action="#" data-parsley-validate novalidate>
+        <input id="card-id" type="hidden" name="card-id">
+        <input id="position" type="hidden" name="position">
+        <div class="form-group">
+          <label for="categoria">Categoria</label>
+          <input type="text" name="categoria" parsley-trigger="change" required
+                 placeholder="Escriba el tema de las preguntas.(Opcional)" class="form-control" id="categoria" value="{{pattern.categoria}}">
+        </div>
+        {% for preg in pattern.preguntas %}
+            <div class="form-group">
+              <label for="pregunta">Pregunta:</label>
+              <input type="text" name="pregunta" parsley-trigger="change" required
+                     placeholder="Escriba la pregunta " class="form-control" value="{{preg.pregunta}}">
+            </div>
+            <div class="form-group">
+              <label for="respuesta">Respuesta:</label>
+              <textarea type="text" name="respuesta" parsley-trigger="change" required
+                placeholder="Escriba la respuesta " class="form-control">{{preg.respuesta}}</textarea> 
+            </div>
+        {% endfor %}
+        <div class="text-right m-b-0">
+          <button class="btn btn-primary waves-effect waves-light" id="add_more_faqs" type="submit">
+            Agregar otra pregunta 
+          </button>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button id="accept_formulario" type="button" class="btn btn-default accept-modal" data-dismiss="modal">Aceptar</button>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+    </div>
+  </div>
+</div>

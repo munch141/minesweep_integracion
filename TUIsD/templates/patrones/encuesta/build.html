@@ -1,0 +1,16 @@
+{% extends 'builder/card.html' %}
+
+{% block card_content %}
+  <form data-parsley-validate="" novalidate="">
+    <div class="form-group">
+      <label for="pregunta">Pregunta</label>
+      <input type="text" name="pregunta" parsley-trigger="change" required="" value="{{pattern.texto_pregunta}}" class="form-control" id="pregunta" readonly>
+    </div>
+    {% for choice in pattern.opciones %}
+    <div class="form-group">
+      <label for="opcion">Opcion:</label>
+      <input type="text" id="opcion" name="opcion" parsley-trigger="change" required="" value="{{ choice.texto_opcion }}" class="form-control" readonly>
+    </div>
+    {% endfor %}
+  </form>
+{% endblock %}

@@ -1,0 +1,10 @@
+<div class='fb-rendered-form-wrapper' data-position='{{pattern.template_component.get.position}}'>
+  <div class='fb-rendered-form'></div>
+</div>
+<script>
+  $(document).ready(function() {
+    json_str = `{{pattern.json|safe}}`;
+    console.log(json_str);
+    $('.fb-rendered-form-wrapper[data-position="{{pattern.template_component.get.position}}"] .fb-rendered-form').html(formDataToHTML(JSON.parse(json_str)));
+  })
+</script>

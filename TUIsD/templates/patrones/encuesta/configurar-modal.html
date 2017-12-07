@@ -1,0 +1,36 @@
+<!-- Modal content-->
+<!-- TODO: Hacer esto como un template bien con sus bloques y que los otros patrones lo que hagan es por ejemplo modificar el contenido -->
+<div class="modal-content">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    <h4 class="modal-title">Configuracion de Encuesta</h4>
+  </div>
+  <div class="modal-body">
+
+    <form class="forms" action="#" data-parsley-validate novalidate>
+      <input id="card-id" type="hidden" name="card-id">
+      <input id="position" type="hidden" name="position">
+      <div class="form-group">
+        <label for="pregunta">Pregunta</label>
+        <input type="text" name="pregunta" parsley-trigger="change" required
+               placeholder="Escriba la pregunta de la encuesta" value="{{pattern.texto_pregunta}}" class="form-control" id="pregunta">
+      </div>
+      {% for choice in pattern.opciones %}
+        <div class="form-group">
+          <label for="opcion">Opcion:</label>
+          <input type="text" name="opcion" parsley-trigger="change" required
+                 placeholder="Escriba la opcion" value="{{choice.texto_opcion}}" class="form-control" id="opcion">
+        </div>
+      {% endfor %}
+      <div class="text-right m-b-0">
+        <button class="btn btn-primary waves-effect waves-light" id="add-option">
+          Agregar otra opcion
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button id="accept_encuesta" type="button" class="accept-modal btn btn-default" data-dismiss="modal">Aceptar</button>
+    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+  </div>
+</div>

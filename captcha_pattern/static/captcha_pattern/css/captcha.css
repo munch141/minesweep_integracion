@@ -1,0 +1,24 @@
+.captcha-wrapper {
+  width: 350px;
+}
+
+.captcha-wrapper button {
+    color: #FFF !important;
+    background: #000 !important;
+    /* Copiado de bootstrap, esta siendo sobreescrito por formBuilder */
+    padding: .25rem .5rem !important;
+    font-size: .875rem !important;
+    line-height: 1.5 !important;
+}
+
+#captcha-answer {
+	margin-top: 1em;
+}
+
+#image_captcha {
+	width: 100%;
+}
+
+.btn-captcha {
+	min-width: 30px;
+}

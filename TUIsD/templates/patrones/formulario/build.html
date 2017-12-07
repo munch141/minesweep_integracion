@@ -1,0 +1,7 @@
+{% extends 'builder/card.html' %}
+
+{% block card_content %}
+<div class='fb-rendered-form-wrapper' data-position='{{pattern.template_component.get.position}}'>
+  <div class='fb-rendered-form' data-position='{{pattern.template_component.get.position}}' data-form-json='{{pattern.json}}'></div>
+</div>
+{% endblock %}

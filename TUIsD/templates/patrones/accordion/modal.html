@@ -1,0 +1,24 @@
+{% comment %}3 - The modal container{% endcomment %}
+<div class="modal fade" id="modal-accordion"></div>
+ 
+{% comment %}4 - This js code will load the response from the href url of the showing button inside the modal{% endcomment %}
+<script>
+$('#modal-accordion').on('show.bs.modal', function (event) {
+    var modal = $(this)
+    var input = $(event.relatedTarget).parent().siblings("input[name='card_position']")[0];
+    var position = $(input).val();
+    var template_id = $('#template_id').val();
+
+    $.ajax({
+        url: "{% url 'accordion:accordion-create' %}",
+        method: 'GET',
+        context: document.body,
+        data: {
+            template: template_id,
+            position: position,
+        }
+    }).done(function(response) {
+        modal.html(response);
+    });
+})
+</script>

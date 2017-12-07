@@ -1,0 +1,77 @@
+<div class="card-box bg-light captcha-wrapper" data-public-key="{{pattern.public_key}}">
+  <div class="container">
+    <div class="row">
+      <div class="col col-md-10">
+        <img id="image_captcha" class="card-img-top" src="" />
+      </div>
+        <div class="col col-md-2">
+          <div class="btn-group-vertical btn-group-sm mr-2" role="group" style="margin-bottom: 0.2em">
+            <button type="button" class="btn btn-secondary btn-dark btn-captcha" data-toggle="tooltip" data-placement="right" title="Refrescar Captcha" id="actualizarCaptcha">
+                <i class="fa fa-refresh" aria-hidden="true"></i>
+            </button>
+          </div>
+          <div class="btn-group-vertical btn-group-sm mr-2 " role="group" style="margin-bottom: 0.2em">
+            <button id="reproducirAudio" type="button" class="btn btn-secondary btn-dark btn-captcha" data-toggle="tooltip" data-placement="right" title="Audio">
+                <i class="fa fa-volume-up" aria-hidden="true"></i>
+            </button>
+            <audio id='audioCaptcha' src="" preload='auto' type="audio/wav"></audio>
+          </div>
+          <div class="btn-separator"></div>
+          <div class="btn-group-vertical btn-group-sm mr-2" role="group" aria-label="Second group" style="width: 2em">
+            <button type="button" class="btn btn-sm btn-dark btn-captcha" data-toggle="modal" data-id="image_captcha" data-target="#exampleModal" data-toggle="tooltip" data-placement="right" title="Ayuda">
+              <i class="fa fa-question-circle" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <input type="text" name="user_answer" class="form-control" id="captcha-answer" placeholder="captcha">
+    <input type="hidden" name="captcha_id" id="captcha-id" class="form-control">
+  </div>
+</div>
+
+
+<!-- Help Modal-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ayuda</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Introduzca el texto que aparece en la imágen en el recuadro del campo que dice <b>"captcha"</b> .</p>
+
+        <p>Así mismo, puede hacer uso de los siguientes botones:</p>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <button type="button" class="btn btn-secondary btn-dark">
+                <i class="fa fa-refresh" aria-hidden="true"></i>
+              </button>
+              <p><b>Botón para refrescar el Captcha.</b></p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <button type="button" class="btn btn-secondary btn-dark">
+                <i class="fa fa-volume-up" aria-hidden="true"></i>
+              </button>
+              <p><b>Botón para recibir ayuda auditiva.</b></p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <button type="button" class="btn btn-secondary btn-dark">
+                <i class="fa fa-question-circle" aria-hidden="true"></i>
+              </button>
+              <p><b>Botón para solicitar asistencia.</b></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

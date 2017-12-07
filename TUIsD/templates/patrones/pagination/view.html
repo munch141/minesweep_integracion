@@ -1,0 +1,123 @@
+<!-- Template for Pagination -->
+
+<div class="pagination-container">
+	<div class="pagination-table-container" style="background-color: #FFFFFF; border-radius: 10px;">
+		<h2 style="padding: 10px 0px 0px 20px;">{{ pagination.title }}</h2>
+		<table class="table table-hover">
+			<tbody>
+				{% for elem in paginator.object_list %}
+					<tr>
+						<input type="hidden" id="elem-num" value="{{ forloop.counter0 }}">
+						<td class="{{pagination.id}}-pagination-elem" id="{{pagination.id}}-elem-{{forloop.counter0}}">{{ elem }}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+	<nav aria-label="Page navigation example">
+		<ul class="pagination justify-content-center" style="margin: 0px">
+			<li class="page-item"><button type="button" class="btn btn-default" id="{{pagination.id}}-pagedn">&laquo;</button></li>
+  
+			{% for i in page_range %}
+				<li class="page-item"><button type="button" class="btn btn-default {{pagination.id}}-page-btn" id="{{pagination.id}}-page-{{i}}" value="{{i}}">{{ forloop.counter }}</button></li>
+			{% endfor %}
+	  	
+	  		<li class="page-item"><button type="button" class="btn btn-default" id="{{pagination.id}}-pageup">&raquo;</button></li>
+		</ul>
+	</nav>
+</div>
+
+<!-- Pagination js -->
+<script>
+	var currentPage = 0;
+	var nItemsOnPage = {{pagination.nItemsOnPage}};
+	var numPages = {{paginator.num_pages}}
+	
+	// Updates the pagination element
+	function updateContent(currentPage, nItemsOnPage){
+		$(".{{pagination.id}}-pagination-elem").each(function() {
+			var firstIndex = nItemsOnPage*currentPage;
+			var lastIndex = firstIndex + nItemsOnPage;
+			var currentElemIndex = $(this).siblings().filter("#elem-num").val()
+
+			if(firstIndex <= currentElemIndex && currentElemIndex < lastIndex){
+				$("#{{pagination.id}}-elem-"+currentElemIndex).css('display', 'block');
+			}else{
+				$("#{{pagination.id}}-elem-"+currentElemIndex).css('display', 'none');
+			}
+		})
+	}
+	/* Content Handler */
+	updateContent(currentPage, nItemsOnPage);
+	updatePageBtns(currentPage, numPages);
+	
+	
+	$(".{{pagination.id}}-pagination-elem").on('click', function() {
+		console.log($(this).attr('id'));
+	})
+	
+	/* Button Handlers */
+	
+	// updates graphics for the pagination buttons
+	function updatePageBtns(currentPage, numPages){
+		// Cacheing querys
+		pgdnBtn = $('#{{ pagination.id }}-pagedn');
+		pgupBtn = $('#{{ pagination.id }}-pageup');
+		pageBtns = $(".{{pagination.id}}-page-btn");
+		
+		// Disable pgdn button in case we are in page 0
+		if(currentPage == 0){
+			pgdnBtn.prop('disabled', true);
+		}else{
+			pgdnBtn.prop('disabled', false);
+		}
+		
+		// Disable pgup button in case we are in last page
+		if(currentPage == numPages-1){
+			pgupBtn.prop('disabled', true);
+		}else{
+			pgupBtn.prop('disabled', false);
+		}
+		
+		// Paints currentPage button in blue
+		pageBtns.each(function() {
+			if($(this).html() == parseInt(currentPage)+1){
+				console.log($(this));
+				$(this).toggleClass('btn-default', false);
+				$(this).toggleClass('btn-primary', true);
+			}else{
+				$(this).toggleClass('btn-primary', false);
+				$(this).toggleClass('btn-default', true);
+			}
+		})
+	}
+	// Page-Down Button
+	$("#{{ pagination.id }}-pagedn").on('click', function() {
+		console.log("down");
+		if(currentPage > 0){
+			currentPage--;
+		}
+		updateContent(currentPage, nItemsOnPage);
+		updatePageBtns(currentPage, numPages);
+	})
+	
+	// Each Page's Buttons
+	$(".{{pagination.id}}-page-btn").each( function() {
+		$(this).on('click', function(){
+			currentPage = $(this).val();
+			updatePageBtns(currentPage, numPages);
+			updateContent(currentPage, nItemsOnPage);
+			console.log(currentPage);
+		})
+	})
+	
+	// Page-Up Button
+	$("#{{ pagination.id }}-pageup").on('click', function() {
+		console.log("up");
+		if(currentPage < numPages-1){
+			currentPage++;
+		}
+		updateContent(currentPage, nItemsOnPage);
+		updatePageBtns(currentPage, numPages);
+	})
+</script>

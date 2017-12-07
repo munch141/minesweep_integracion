@@ -1,0 +1,22 @@
+<div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="text-align:center">
+                <h2 class="panel-title">FAQ</h2>
+            </div>
+            <div class="panel-body">
+            <!-- Mostrar las preguntas y respuestas sin agrupar -->
+            <div class="form-group">
+                <label for="categoria">Categoria</label>
+                <h3>{{pattern.categoria.nombre}}</h3>
+            </div>
+            {% for pregunta in pattern.preguntas %}
+                <div class="form-group">
+                    <h3>{{pregunta.pregunta}}:</h3>
+                </div>
+                <div class="form-group">
+                    <p>{{pregunta.respuesta}}</p>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+</div>

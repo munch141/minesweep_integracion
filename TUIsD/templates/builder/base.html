@@ -1,0 +1,74 @@
+<!DOCTYPE html> {% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>TUIsD</title>
+
+  <!-- Global stylesheets -->
+  <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'css/sidebar.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'css/core.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'css/components.css' %}" rel="stylesheet" type="text/css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.min.css'%}">
+
+  <link href="{% static 'css/main.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'css/formulario.css' %}" rel="stylesheet" type="text/css">
+
+  <!-- /global stylesheets -->
+  <link href="{% static 'css/main.css' %}" rel="stylesheet" type="text/css">
+
+  <!-- Core JS files -->
+  <script type="text/javascript" src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+  <script src="http://malsup.github.com/jquery.form.js"></script>
+  <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+  <!-- /core JS files -->
+
+  <!-- JSWeCan -->
+  <script src="{% static 'servecaptcha/js/captcha.js' %}"></script>
+  <script src="{% static 'formBuilder/js/jquery-ui.min.js' %}"></script>
+  <script src="{% static 'formBuilder/js/form-builder.min.js' %}"></script>
+  <script src="{% static 'formBuilder/js/form-render.min.js' %}"></script>
+  <script>
+    {% include 'patrones/formulario/customFormBuilder.js' with captchaHTML=captchaHTML %}
+  </script>
+  <link href="{% static 'navbar/css/navbar.css' %}" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div>
+    <!-- Main navbar -->
+    {% block navbar %} {% endblock navbar %}
+    <!-- /main navbar -->
+
+    <!-- Page container -->
+    <div class="page-container">
+      <!-- Page content -->
+      <div class="page-content">
+        <!-- Main sidebar -->
+        {% block sidebar %} {% include "builder/sidebar.html" %} {% endblock sidebar %}
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" id="sidebar"></div>
+        <!-- /main sidebar -->
+
+        <!-- Main content -->
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8" id="content">
+          {% block content %} {% endblock content %}
+        </div>
+
+        <!-- Footer -->
+        {% block footer %} {% endblock footer %}
+        <!-- /footer -->
+      </div>
+      <!-- /main content -->
+    </div>
+    <!-- /page content -->
+  </div>
+  <!-- /page container -->
+
+  {% block custom_script %} {% endblock custom_script %}
+</body>
+
+</html>

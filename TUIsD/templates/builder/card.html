@@ -1,0 +1,16 @@
+{% with template_component=pattern.template_component.get %}
+<div id="card_{{template_component.position}}" data-position="{{template_component.position}}" data-template-component-id="{{template_component.id}}" data-pattern-name="{{pattern.name}}" class='pattern-container card-box'>
+  <div class='btn-group pull-right'>
+    <button data-position="{{ template_component.position }}" type='button' class='btn btn-default waves-effect config'>Configurar</button>
+    <button data-position="{{ template_component.position }}" type='button' class='btn btn-danger waves-effect eliminar'>Eliminar</button> 
+  </div> 
+  <h1 class='header-title m-b-30'>{{pattern.name|title}}</h1> 
+  <div class='row'> 
+   <div class='col-md-12 pattern-content' style='text-align: left;'>
+    {% block card_content %}
+    {% endblock %}
+   </div> 
+  </div> 
+  <input type='hidden' name='card_position' value="{{ template_component.position }}"> 
+</div>
+{% endwith %}

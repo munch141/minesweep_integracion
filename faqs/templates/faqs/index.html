@@ -1,0 +1,33 @@
+{% extends 'faqs/base.html' %}
+{% load static %}
+{% block content %}
+<div style="text-align:center" class="page-header container">
+    <h1>FAQ</h1>
+</div>
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="text-align:center">
+                        <h1 class="panel-title">Ver FAQ</h1>
+                </div>
+                <div class="panel-body">
+                    <a href="{% url 'faqs:detail' %}">Acceder al FAQ</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="text-align:center">
+                        <h1 class="panel-title">Configuración</h1>
+                    </div>
+                    <div class="panel-body">
+                        <a class="btn btn-primary btn-lg" role="button" aria-disabled="true" href="{% url 'faqs:new' %}">Añadir Pregunta/Respuesta</a>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
